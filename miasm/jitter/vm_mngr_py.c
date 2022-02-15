@@ -693,9 +693,14 @@ PyObject* vm_get_all_memory(VmMngr* self, PyObject* args)
 		PyDict_SetItemString(dict2, "access", o);
 		Py_DECREF(o);
 
+		o = PyUnicode_FromString(mpn->name);
+		PyDict_SetItemString(dict2, "name", o);
+		Py_DECREF(o);
+
 		o = PyLong_FromUnsignedLongLong(mpn->ad);
 		PyDict_SetItem(dict, o, dict2);
 		Py_DECREF(o);
+
 		Py_DECREF(dict2);
 	}
 	return dict;
