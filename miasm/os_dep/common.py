@@ -79,6 +79,20 @@ class heap(object):
         """
         return self.vm_alloc(jitter.vm, size, perm=perm, cmt=cmt)
 
+    def dealloc(self, jitter, addr):
+        """
+        @jitter: a jitter instance
+        @addr: the address we want to deallocate
+        """
+        return self.vm_dealloc(jitter.vm, addr)
+
+    def vm_dealloc(self, vm, addr):
+        """
+        @vm: a VmMngr instance
+        @addr: the address we want to deallocate
+        """
+        return vm.remove_memory_page(addr)
+
     def vm_alloc(self, vm, size, perm=PAGE_READ | PAGE_WRITE, cmt=""):
         """
         @vm: a VmMngr instance
